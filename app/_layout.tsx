@@ -7,7 +7,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function Layout() {
   const [fontsLoaded, fontError] = useFonts({
-    'OS_Black': require("./assets/fonts/OpenSans-Bold.ttf"),
+    'OS_Bold': require("./assets/fonts/OpenSans-Bold.ttf"),
     'OS_Medium': require("./assets/fonts/OpenSans-Medium.ttf"),
     'OS_Regular': require("./assets/fonts/OpenSans-Regular.ttf"),
     'OS_Light': require("./assets/fonts/OpenSans-Light.ttf"),
@@ -23,5 +23,15 @@ export default function Layout() {
     return null;
   }
 
-  return <Stack />;
+  return (
+    <Stack>
+        <Stack.Screen name='index' options={{
+            headerShown: false
+        }}/>
+
+        <Stack.Screen name='screens/landing' options={{
+            headerShown : false
+        }} />
+    </Stack>
+  )
 }
