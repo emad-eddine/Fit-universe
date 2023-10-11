@@ -32,6 +32,12 @@ export default function Layout() {
         <Stack.Screen name='screens/landing' options={{
             headerShown : false
         }} />
+        <Stack.Screen name='screens/auth/SingupScreen' options={{
+            headerShown : false
+        }} />
+        <Stack.Screen name='screens/auth/LoginScreen' options={{
+            headerShown : false
+        }} />
     </Stack>
   )
 }

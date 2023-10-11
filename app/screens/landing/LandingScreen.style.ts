@@ -85,14 +85,14 @@ export const styles = StyleSheet.create({
     fontSize : 25
   },
 
+  btnTransparent : {
+    borderColor : Colors.LIGHT_GREEN,
+    borderStyle : "solid",
+    borderWidth : 2
+  },
+
   btn : {
-    backgroundColor : Colors.LIGHT_GREEN,
-    paddingHorizontal : 15,
-    paddingVertical : 10,
-    borderRadius : 10,
-    justifyContent : "center",
-    alignItems : "center",
-    
+    backgroundColor : Colors.LIGHT_GREEN
   }
 
 

@@ -6,13 +6,19 @@ import {
   StatusBar,
   Pressable
 } 
-
 from 'react-native'
 import { styles } from './LandingScreen.style'
 import CustomSafeView from '../../components/custom_safe_view/CustomSafeView'
-export default function LandingScreen() {
-  return (
+import CustomBtn from '../../components/custom_btn/CustomBtn'
 
+import { useRouter } from 'expo-router'
+
+
+export default function LandingScreen() {
+  
+  const router = useRouter()
+  
+  return (
     <ImageBackground 
     source={require("../../assets/images/background_image.png")}
     resizeMode='cover'
@@ -36,12 +42,18 @@ export default function LandingScreen() {
           </View>
 
           <View style={styles.btnsContainer}>
-              <Pressable style={styles.btn}>
-                  <Text style={styles.btnText}>Singup</Text>
-              </Pressable>
-              <Pressable style={styles.btn}>
-                  <Text style={styles.btnText}>Login</Text>
-              </Pressable>
+              <CustomBtn  
+                btnName='Signup'
+                onBtnClick={()=>{router.replace("/screens/auth/SingupScreen")}}
+                customBtnStyle={styles.btn}
+              />
+
+              <CustomBtn  
+                btnName='Login'
+                onBtnClick={()=>{router.replace("/screens/auth/LoginScreen")}}
+                customBtnStyle={styles.btnTransparent}
+
+              />
           </View>
 
       </CustomSafeView>
