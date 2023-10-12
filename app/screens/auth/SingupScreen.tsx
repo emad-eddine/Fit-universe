@@ -11,10 +11,15 @@ import CustomInputField from '../../components/custom_input_field/CustomInputFie
 import CustomBtn from '../../components/custom_btn/CustomBtn';
 import CustomMemberField from '../../components/custom_member_field/CustomMemberField';
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { addUserToDb } from '../../controllers/authController';
 
 export default function SingupScreen() {
   
   const router = useRouter()
+  const [userName,setUserName] = useState<string>("")
+  const [email,setEmail] = useState<string>("")
+  const [password,setPassword] = useState<string>("")
   
     return (
     <ImageBackground
@@ -28,12 +33,28 @@ export default function SingupScreen() {
           <View style={styles.formContainer}>
             <Text style={styles.containerText}>FitUniverse</Text>
             <Text style={styles.formTitle}>Singup</Text>
-            <CustomInputField label="Name" />
-            <CustomInputField label="Email" />
-            <CustomInputField label="Password" />
+            <CustomInputField label="Name" onValueChange={(text)=>{
+              setUserName(text)
+            }}/>
+            <CustomInputField label="Email" onValueChange={(text)=>{
+              setEmail(text)
+            }} />
+            <CustomInputField isSecure={true} label="Password" onValueChange={(text)=>{
+              setPassword(text)
+            }}/>
             <CustomBtn
               btnName="Singup"
-              onBtnClick={() => {}}
+              onBtnClick={() => {
+                addUserToDb(userName,email,password).then(()=>{
+                
+                      console.log('added to db');
+                    
+                  
+                }).catch((e)=>{
+                  console.log(e);
+                  
+                })
+              }}
               customBtnStyle={styles.btn}
               customBtnTextStyle={styles.btnText}
             />

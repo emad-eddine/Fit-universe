@@ -5,11 +5,17 @@ import CustomInputField from '../../components/custom_input_field/CustomInputFie
 import CustomBtn from '../../components/custom_btn/CustomBtn';
 import CustomMemberField from '../../components/custom_member_field/CustomMemberField';
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { checkUserCredentials } from '../../controllers/authController';
+import { DB_RESPONSE } from '../../utils/constants';
 export default function LoginScreen() {
 
 
 
   const router = useRouter()
+
+  const [email,setEmail] = useState<string>("")
+  const [password,setPassword] = useState<string>("")
   return (
     <ImageBackground
       source={require('../../assets/images/background_image.png')}
@@ -22,11 +28,23 @@ export default function LoginScreen() {
           <View style={styles.formContainer}>
             <Text style={styles.containerText}>FitUniverse</Text>
             <Text style={styles.formTitle}>Login</Text>
-            <CustomInputField label="Email" />
-            <CustomInputField label="Password" />
+            <CustomInputField label="Email" onValueChange={(text)=>{
+              setEmail(text)
+            }}/>
+            <CustomInputField label="Password" onValueChange={(text)=>{
+              setPassword(text)
+            }} />
             <CustomBtn
               btnName="Login"
-              onBtnClick={() => {}}
+              onBtnClick={() => {
+               checkUserCredentials(email,password).then((value)=>{
+                console.log(value);
+               }).catch((e)=>{
+                console.log(e);
+                
+               })
+                
+              }}
               customBtnStyle={styles.btn}
               customBtnTextStyle={styles.btnText}
             />
